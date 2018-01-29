@@ -87,13 +87,13 @@ for k in range(5,11):
         for x in c:
             com_count[x]+=1
             node_comm.setdefault(x,[])
-            node_comm[x].append(c)
-    #f2.write(str(node_comm))
+            node_comm[x].append(",".join(list(c)))
+    
     writer = csv.writer(f2, delimiter = '\t')
     
     for key,vall in node_comm.iteritems():
-        writer.writerow([key]+vall)
-        """f2.write("%s\t%s\n"%([key],'\t'.join(vall)))"""
+        writer.writerow([key]+[com_count[key]]+vall)
+ 
     f.close()
     f2.close()
 print "----------------END----------------"
