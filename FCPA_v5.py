@@ -90,7 +90,6 @@ for k in range(5,11):
             node_comm[x].append(",".join(list(c)))
     
     writer = csv.writer(f2, delimiter = '\t')
-    
     for key,vall in node_comm.iteritems():
         writer.writerow([key]+[com_count[key]]+vall)
  
