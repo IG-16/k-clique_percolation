@@ -18,7 +18,6 @@ f.write("Node\tClustering_Coefficient\tShortest_Path_Length\tShortest_Path\tBetw
 for i in length1:
         key, value = max(length1[i].iteritems(), key=lambda x:x[1])
         writer.writerow((i,clus[i],value,nx.shortest_path(G,i,key),deg[i]))
-        my_analysis.append({i : [clus[i],value,nx.shortest_path(G,i,key),deg[i]]})
-        
-print my_analysis
+        my_analysis.append({i : [clus[i],value,nx.shortest_path(G,i,key),deg[i]]})    
+#print my_analysis
 print "-------STOP------"
