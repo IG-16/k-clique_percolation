@@ -80,6 +80,7 @@ for k in range(5,11):
     f2 = open(Opfile2,"w")
     com_count=dict.fromkeys(G,0)
     node_comm=dict()
+    node_comm_size=dict()
     for c in get_fast_percolated_cliques(G, k):
         f.write(" ".join([str(x) for x in c]))
         f.write("\n")
@@ -87,6 +88,8 @@ for k in range(5,11):
         for x in c:
             com_count[x]+=1
             node_comm.setdefault(x,[])
+            len1= str(len(c))
+            node_comm[x].append("\t".join([len1]))
             node_comm[x].append(",".join(list(c)))
     
     writer = csv.writer(f2, delimiter = '\t')
