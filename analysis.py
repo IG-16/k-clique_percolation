@@ -175,8 +175,14 @@ deg = dict(nx.betweenness_centrality(G))
 f.write("Node\tClustering_Coefficient\tShortest_Path_Length\tShortest_Path\tBetweeness_Centrality\n")
 for i in length1:
         key, value = max(length1[i].iteritems(), key=lambda x:x[1])
+<<<<<<< HEAD
         writer.writerow((i,clus[i],value,shortest_path(G,i,key),deg[i]))
         my_analysis.append({i : [clus[i],value,shortest_path(G,i,key),deg[i]]})
         
 print my_analysis
+=======
+        writer.writerow((i,clus[i],value,nx.shortest_path(G,i,key),deg[i]))
+        my_analysis.append({i : [clus[i],value,nx.shortest_path(G,i,key),deg[i]]})    
+#print my_analysis
+>>>>>>> b30b397d111af95ef61d4edf6e5545ac2a4439cf
 print "-------STOP------"
