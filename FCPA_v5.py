@@ -80,7 +80,7 @@ for k in range(5,11):
     f2 = open(Opfile2,"w")
     com_count=dict.fromkeys(G,0)
     node_comm=dict()
-    node_comm_size=dict()
+
     for c in get_fast_percolated_cliques(G, k):
         f.write(" ".join([str(x) for x in c]))
         f.write("\n")
