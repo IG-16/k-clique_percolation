@@ -3,6 +3,7 @@
 from __future__ import division
 import networkx as nx
 import csv as csv
+import operator as opr
 from itertools import combinations
 from collections import Counter
 from networkx.utils import not_implemented_for
@@ -164,8 +165,8 @@ def shortest_path(G, source=None, target=None, weight=None):
 
 print "-------START------"
 Ipfile = raw_input("enter input file: ")
-G = nx.read_edgelist(Ipfile, nodetype=str, delimiter="\t")
-
+#G = nx.read_edgelist(Ipfile, nodetype=str, delimiter="\t")
+G=nx.karate_club_graph()
 Opfile ="ANALYSIS.txt"
 f = open(Opfile,"w")
 writer = csv.writer(f, delimiter = '\t')
@@ -175,11 +176,12 @@ length1 = dict(all_pairs_shortest_path_length(G))
 betw = dict(nx.betweenness_centrality(G))
 deg = dict(nx.degree_centrality(G))
 eig = dict(nx.eigenvector_centrality(G))
-f.write("Node\tClustering_Coefficient\tShortest_Path_Length\tShortest_Path\tBetweeness_Centrality\tDegree_Centrality\tEigenVector_Centrality\n")
+f.write("Node\tShortest_Path_Length\tShortest_Path\tClustering_Coefficient\tBetweeness_Centrality\tDegree_Centrality\tEigenVector_Centrality\n")
 for i in length1:
         key, value = max(length1[i].iteritems(), key=lambda x:x[1])
-        writer.writerow((i,clus[i],value,shortest_path(G,i,key),betw[i],deg[i],eig[i]))
-        my_analysis.append({i : [clus[i],value,shortest_path(G,i,key),betw[i]]})
-        
-print my_analysis
+        writer.writerow((i,value,shortest_path(G,i,key),clus[i],betw[i],deg[i],eig[i]))
+        #my_analysis.append({i : [clus[i],value,shortest_path(G,i,key),betw[i]]})
+
+       
+#print my_analysis
 print "-------STOP------"
